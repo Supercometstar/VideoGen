@@ -10,6 +10,9 @@ const Header = () => {
 				<div className='flex flex-row items-center gap-8'>
 					<img src='/assets/img/logo.png' width={150} alt='logo' />
 					<div className='flex flex-row items-center gap-6'>
+						<Link to='/'>
+							<button className='text-lg hover:bg-gray-100 rounded-lg py-2 px-3'>Home</button>
+						</Link>
 						<Link to='/video/generate'>
 							<button className='text-lg hover:bg-gray-100 rounded-lg py-2 px-3'>Generate</button>
 						</Link>
