@@ -19,14 +19,12 @@ export const verify = verifyCode => async dispatch => {
 
 export const loginUser = credentials => async dispatch => {
   try {
-    const response = await cometAPI('post', '/api/auth', credentials);
-    if (response.message === 'success') {
-      dispatch(loginSuccess(response));
-      localStorage.setItem('token', response.token);
+    const response = await cometAPI('post', '/api/user/sign-in', credentials);  
+    if (response) {
+      localStorage.setItem('token', response.access_token);
+      dispatch(loginSuccess({ email: credentials.email, token: response.access_token }));
       return true
-    }else {
-      return false
-    }
+    }else return false
   } catch (error) {
     console.log(error)
     return false
@@ -35,10 +33,8 @@ export const loginUser = credentials => async dispatch => {
 
 export const registerUser = credentials => async dispatch => {
   try {
-    const response = await cometAPI('put', '/api/auth', credentials);
-    if (response.message === 'success') {
-      dispatch(loginSuccess(response));
-      localStorage.setItem('token', response.token);
+    const response = await cometAPI('post', '/api/user/sign-up', credentials);
+    if (response) {
       return true
     }else {
       return false

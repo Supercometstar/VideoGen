@@ -9,9 +9,10 @@ const SelectGroup = ({ label, options, selected, setSelected }) => {
 			<h3 className='text-lg'>{label}</h3>
 			<select className='w-full border border-gray-900 rounded-lg p-2 cursor-pointer' onChange={handleChange}>
 				{
-					options.map((item, idx) => (
-						<option className='p-4' value={item}>{item}</option>
-					))
+					options.map((item, idx) => {
+						if (typeof(item) === 'object') return (<option className='p-4' value={item.value}>{item.label}</option>)
+						else return (<option className='p-4' value={item}>{item}</option>)
+					})
 				}
 			</select>
 		</div>

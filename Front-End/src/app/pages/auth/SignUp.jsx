@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { PaymentForm } from '@components'
+// import { PaymentForm } from '@components'
 
 import { registerUser } from '@store/actions/auth.action'
 
@@ -32,9 +32,8 @@ const SignUpPage = () => {
 			alert('Confirm password is not corrent!')
 			return
 		}
-		const response = await dispatch(registerUser({ email, password, confirm }))
-		if (response) navigate('/auth/sign-in')
-		else alert('Something went wrong!')
+		const response = await dispatch(registerUser({ email, password }))
+		if (response) navigate('/auth/sign-in')		
 	}
 
 	return (
@@ -59,17 +58,14 @@ const SignUpPage = () => {
 					<span className='text-base font-medium mt-2'>Email</span>
 					<input placeholder='Enter Email' className='p-3 w-full border border-gray-100 rounded-xl' name='email' onChange={handleEmailChange} value={email} />
 					<span className='text-base font-medium mt-2'>Password</span>
-					<input placeholder='Enter Email' type='password' className='p-3 w-full border border-gray-100 rounded-xl' name='email' onChange={handlePasswordChange} value={password} />
+					<input placeholder='Enter Password' type='password' className='p-3 w-full border border-gray-100 rounded-xl' name='email' onChange={handlePasswordChange} value={password} />
 					<span className='text-base font-medium mt-2'>Confirm</span>
-					<input placeholder='Enter Email' type='password' className='p-3 w-full border border-gray-100 rounded-xl' name='email' onChange={handleConfirmChange} value={confirm} />
+					<input placeholder='Enter Confirm Password' type='password' className='p-3 w-full border border-gray-100 rounded-xl' name='email' onChange={handleConfirmChange} value={confirm} />
 					{/*<PaymentForm />*/}
 					<button className='py-3 px-5 w-full rounded-md border border-black bg-black text-white mt-5 hover:bg-white hover:text-black hover:border-gray-600' onClick={handleSubmit}>Submit</button>
 					<div className='mt-4 text-xs mb-20'>
-						By clicking Submit, you agree to our&nbsp;
-						<a className='text-blue-500 hover:underline' target='_blank' href='#'>Terms of Service</a>
-						&nbsp;and&nbsp;
-						<a className='text-blue-500 hover:underline' target='_blank' href='#'>Privacy Policy</a>
-						.
+						Already have account?&nbsp;&nbsp;
+						<Link className='text-blue-500 hover:underline' to='/auth/sign-in'>Sign In</Link>
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
 import { MainLayout, SimpleLayout } from '@layouts'
+import { privateRoute } from '@utils'
 
 import routes from './routes'
 
@@ -11,17 +12,18 @@ const AppRouter = () => {
 				<Route element={<MainLayout />}>
 					{
 						routes.filter((route) => route.layout === 'main').map((route, route_idx) => (
-							<Route key={route_idx} path={route.path} element={route.element} />
+							<Route key={route_idx} path={route.path} element={privateRoute(route.element, route.isSign)} />
 						))
 					}
 				</Route>
 				<Route element={<SimpleLayout />}>
 					{
 						routes.filter((route) => route.layout === 'simple').map((route, route_idx) => (
-							<Route key={route_idx} path={route.path} element={route.element} />
+							<Route key={route_idx} path={route.path} element={privateRoute(route.element, route.isSign)} />
 						))
 					}
 				</Route>
+				<Route path='*' element={<Navigate to='/video/generate' />} />
 			</Routes>
 		</Router>
 	)

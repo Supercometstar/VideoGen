@@ -1,6 +1,25 @@
+import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import axios from 'axios'
 
-import { baseUrl } from '.'
+import { baseURL } from '.'
+
+export const privateRoute = (Component, isSign) => {
+
+  const _ = () => {
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+    
+    if (isAuthenticated || (isAuthenticated === isSign)) {
+      return Component
+    }else {
+      return <Navigate to='/auth/sign-in' />
+    }
+  }
+
+  return <_ />
+
+};
 
 export const authHeader = () => {
   const token = localStorage.getItem('token');
@@ -14,7 +33,7 @@ export const authHeader = () => {
 export const cometAPI = async (method, url, data={}) => {
 
   const api = axios.create({
-      baseUrl
+      baseURL
   });
 
   try {
@@ -24,8 +43,12 @@ export const cometAPI = async (method, url, data={}) => {
     }else {
       response = await api[method](url, data, { headers: authHeader() })
     }
-    return response.data;
+    console.log(response.status.toString()[0])
+    if (response.status.toString()[0] === '2') return response.data
+    else return false
   } catch (error) {
-    
+    alert(error.response.data.message)
+    console.log(error)
+    return false
   }
 };

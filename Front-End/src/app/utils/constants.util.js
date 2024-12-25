@@ -1,4 +1,5 @@
-export const baseUrl = `${window.location.hostname}:1005`
+// export const baseUrl = `${window.location.hostname}:1005`
+export const baseURL = `http://192.168.106.48:5000`
 
 export const scriptTypes = [
 	{ 'name': 'vadoo' },
@@ -112,12 +113,12 @@ export const languages = [
 ]
 
 export const durations = [
-	'30 To 60 Seconds',
-	'60 To 90 Seconds',
-	'90 To 120 Seconds',
-	'120 To 180 Seconds',
-	'5 Minutes',
-	'10 Minutes',
+	{ label: '30 To 60 Seconds', value: '30-60' },
+	{ label: '60 To 90 Seconds', value: '60-90' },
+	{ label: '90 To 120 Seconds', value: '90-120' },
+	{ label: '120 To 180 Seconds', value: '120-180' },
+	{ label: '5 Minutes', value: '5 min' },
+	{ label: '10 Minutes', value: '10 min' },
 ]
 
 export const ratios = [

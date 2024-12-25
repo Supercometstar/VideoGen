@@ -1,6 +1,7 @@
 import { 
 	HomePage,
 	GenerateVideoPage,
+	VideoHistoryPage,
 	// Dashboard,
 	// Setting,
 } from '@pages'
@@ -13,17 +14,17 @@ const commonRoutes = [
 		isSign: false,	
 	},
 	{
-		path: '/generate-video',
+		path: '/video/generate',
 		element: <GenerateVideoPage />,
 		layout: 'main',
 		isSign: true,
-	}
-	// {
-	// 	path: '/dashboard',
-	// 	element: <Dashboard />,
-	// 	layout: 'main',
-	// 	isSign: true
-	// },
+	},
+	{
+		path: '/video/history',
+		element: <VideoHistoryPage />,
+		layout: 'main',
+		isSign: true
+	},
 	// {
 	// 	path: '/setting',
 	// 	element: <Setting />,
