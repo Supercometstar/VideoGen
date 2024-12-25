@@ -1,13 +1,18 @@
+import { Provider } from 'react-redux'
 
+import AppRouter from '@routes'
+import Store from '@store'
 
-import '@styles/App.css';
+import '@styles/App.css'
+import '@styles/scrollbar.css'
 
-function App() {
+const App = () => {
+
   return (
-    <div>
-      Heya
-    </div>
-  );
+    <Provider store={Store}>
+      <AppRouter />
+    </Provider>
+  )
 }
 
-export default App;
+export default App
